@@ -25,7 +25,7 @@ mgmt_cli -r true show updatable-objects-repository-content filter.text "Amazon" 
 # list from URI and name
 #   name-in-updatable-objects-repository additional-properties.uri
 
-# notice respons structure
+# notice response structure
 mgmt_cli -r true show updatable-objects-repository-content filter.text "Amazon"  limit 500 details-level full --format json | jq '. | keys'
 # notice details of first objects
 mgmt_cli -r true show updatable-objects-repository-content filter.text "Amazon"  limit 500 details-level full --format json | jq -r '.objects[0]'
@@ -33,7 +33,9 @@ mgmt_cli -r true show updatable-objects-repository-content filter.text "Amazon" 
 mgmt_cli -r true show updatable-objects-repository-content filter.text "Amazon"  limit 500 details-level full --format json | jq -r '.objects[] | ."name-in-updatable-objects-repository" as $name | ."additional-properties".uri as $uri | ."uid-in-updatable-objects-repository"  as $uid | ([$uid, $uri, $name] | join("/")) '
 ```
 
-#
+### Import, list and delete updatable object
+Object usable in rule base after adding (import) from repository
+
 ```bash
 # ssh cp179
 #  "9f840200-4376-11e7-bb18-005056c0000c" - Amazon Web Services/S3 Services
