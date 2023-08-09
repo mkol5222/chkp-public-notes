@@ -33,7 +33,7 @@ This guide describes configuration steps to connect Check Point Security Managem
 - I save CA certificate from Kubernetes cluster in BASE64 format
 
   ```bash
-  kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.certificate-authority-data}' > ca.crt.b64
+  kubectl config view --raw --minify --flatten -o jsonpath='{.clusters[].cluster.certificate-authority-data}' | tee ca.crt.b64
   ```
 
 ### 2. Create Kubernetes Service Account for CloudGuard Controller access
@@ -85,9 +85,9 @@ This guide describes configuration steps to connect Check Point Security Managem
 ### 5. Create CloudGuard Controller Data Center object in Check Point Security Management
 
 - based on data collected:
-    - Kubernetes API server endpoint
-    - Kubernetes Service Account token
-    - CA certificate from Kubernetes cluster
+    - Kubernetes API server endpoint - URL including protocol prefix https://
+    - Kubernetes Service Account token - `token.txt`
+    - CA certificate from Kubernetes cluster -`ca.crt.b64`
 
 we are ready to create CloudGuard Controller Data Center object in Check Point Security Management
 
