@@ -1,0 +1,29 @@
+GET http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https://management.azure.com/ 
+Metadata: true
+
+# azureuser@u1:~$ curl --request GET --url 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F' --header 'metadata: true' --header 'user-agent: vscode-restclient' -s | jq
+# {
+#   "error": "invalid_request",
+#   "error_description": "Identity not found"
+# }
+
+### once enabled
+# {
+#   "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6Ii1LSTNROW...",
+#   "client_id": "99d599e2-eb7b-4f61-a1ae-b6fe7f26c306",
+#   "expires_in": "86400",
+#   "expires_on": "1680245581",
+#   "ext_expires_in": "86399",
+#   "not_before": "1680158881",
+#   "resource": "https://management.azure.com/",
+#   "token_type": "Bearer"
+# }
+
+#  T=$(curl --request GET --url 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F' --header 'metadata: true' --header 'user-agent: vscode-restclient' -s | jq -r .access_token)
+
+#$ curl -H "Authorization: Bearer $T" https://management.azure.com/subscriptions/f4ad5e85-ec75-4321-8854-ed7eb611f61d/providers/Microsoft.Compute/virtualMachineScaleSets?api-version=2022-11-01%27
+#{"error":{"code":"AuthorizationFailed","message":"The client 'd8f4dfe2-24da-438f-8154-d14b2ae45293' with object id 'd8f4dfe2-24da-438f-8154-d14b2ae45293' does not have authorization to perform action 'Microsoft.Compute/virtualMachineScaleSets/read' over scope '/subscriptions/f4ad5e85-ec75-4321-8854-ed7eb611f61d' or the scope is invalid. If access was recently granted, please refresh your credentials."}}
+
+# T=$(curl -s -H 'metadata: true' 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fmanagement.azure.com%2F'|  jq -r .access_token)
+
+# curl -s -H "Authorization: Bearer $T" 'https://management.azure.com/subscriptions/f4ad5e85-ec75-4321-8854-ed7eb611f61d/providers/Microsoft.Compute/virtualMachines?api-version=2022-11-01' | jq -r '.value[]|[.name,.id]|@csv'
