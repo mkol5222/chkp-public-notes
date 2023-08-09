@@ -43,7 +43,7 @@ This guide describes configuration steps to connect Check Point Security Managem
   ```bash
   kubectl create serviceaccount cloudguard-controller
   kubectl create clusterrole endpoint-reader --verb=get,list --resource=endpoints
-  kubectl create clusterrolebinding allow-cloudguard-access-endpoints --clusterrole=endpoint-reader serviceaccount=default:cloudguard-controller
+  kubectl create clusterrolebinding allow-cloudguard-access-endpoints --clusterrole=endpoint-reader --serviceaccount=default:cloudguard-controller
   kubectl create clusterrole pod-reader --verb=get,list --resource=pods
   kubectl create clusterrolebinding allow-cloudguard-access-pods --clusterrole=pod-reader --serviceaccount=default:cloudguard-controller
   kubectl create clusterrole service-reader --verb=get,list --resource=services
@@ -69,7 +69,7 @@ This guide describes configuration steps to connect Check Point Security Managem
   EOF
 
   # note base64-decoded auth token:
-  echo; kubectl get secret/cloudguard-controller -o json | jq -r .data.token | base64 -d ; echo; echo    ```
+  echo; kubectl get secret/cloudguard-controller -o json | jq -r .data.token | base64 -d | tee token.txt ; echo; echo
   ```
 
 ### 4. Kubernetes API server endpoint
