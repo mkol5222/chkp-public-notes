@@ -54,7 +54,6 @@ This guide describes configuration steps to connect Check Point Security Managem
 
   kubectl create clusterrole node-reader --verb=get,list --resource=nodes
   kubectl create clusterrolebinding allow-cloudguard-access-nodes --clusterrole=node-reader --serviceaccount=default:cloudguard-controller
-  
   ```
 
 ### 3. Create and save Kubernetes Service Account token
@@ -91,8 +90,9 @@ This guide describes configuration steps to connect Check Point Security Managem
 
 - based on data collected:
     - Kubernetes API server endpoint - URL including protocol prefix https://
-    - Kubernetes Service Account token - `token.txt`
-    - CA certificate from Kubernetes cluster -`ca.crt.b64`
+    - Kubernetes Service Account token - `token.txt` - NOT base64-encoded
+    - CA certificate from Kubernetes cluster -`ca.crt.b64` - base64-encoded!
 
 we are ready to create CloudGuard Controller Data Center object in Check Point Security Management
 
+ ![K8S DC object](2023-08-09-09-41-45.png)
