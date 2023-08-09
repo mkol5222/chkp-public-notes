@@ -42,14 +42,19 @@ This guide describes configuration steps to connect Check Point Security Managem
 
   ```bash
   kubectl create serviceaccount cloudguard-controller
+
   kubectl create clusterrole endpoint-reader --verb=get,list --resource=endpoints
   kubectl create clusterrolebinding allow-cloudguard-access-endpoints --clusterrole=endpoint-reader --serviceaccount=default:cloudguard-controller
+
   kubectl create clusterrole pod-reader --verb=get,list --resource=pods
   kubectl create clusterrolebinding allow-cloudguard-access-pods --clusterrole=pod-reader --serviceaccount=default:cloudguard-controller
+
   kubectl create clusterrole service-reader --verb=get,list --resource=services
   kubectl create clusterrolebinding allow-cloudguard-access-services --clusterrole=service-reader --serviceaccount=default:cloudguard-controller
+
   kubectl create clusterrole node-reader --verb=get,list --resource=nodes
   kubectl create clusterrolebinding allow-cloudguard-access-nodes --clusterrole=node-reader --serviceaccount=default:cloudguard-controller
+  
   ```
 
 ### 3. Create and save Kubernetes Service Account token
