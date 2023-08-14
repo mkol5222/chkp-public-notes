@@ -1,0 +1,78 @@
+### 1. Obtain authentication token
+# @name login
+
+# you may use environment variables to store sensitive data
+
+# powershell example to set keys and start VSCode:
+#  $env:appsecClientId="clientIdhere"; $env:appsecAccessKey="secretHere"; code .
+@clientId = {{$processEnv appsecClientId}}
+@accessKey = {{$processEnv appsecAccessKey}}
+
+# to avoid hardocoding them similar to below 
+#   (lines below is commented out)
+# @clientId = USEyourOWN
+# @accessKey = yourSecretHere
+
+
+POST https://cloudinfra-gw.portal.checkpoint.com/auth/external
+content-type: application/json
+
+{"clientId":"{{clientId}}" ,"accessKey":"{{accessKey}}" }
+
+###
+# now we access token in response from login request
+@authToken = {{login.response.body.data.token}}
+
+# we will simply copy example query from API playground
+# notice X-REQUEST-TYPE: GraphQL is pesudo-header
+# that incidates to REST Client that this is GraphQL request
+# and makes it easier to write GraphQL queries
+# without encoding them into body manually
+
+# @name getAssets
+POST https://cloudinfra-gw.portal.checkpoint.com/app/i2/graphql/V1
+authorization: Bearer {{authToken}}
+content-type: application/json
+X-REQUEST-TYPE: GraphQL
+
+query ExampleQuery {
+  getAssets {
+    status
+      assets {
+        id
+        name
+      }
+  }
+}
+
+###
+#
+# 3. deleting asset by asset ID
+# @name deleteAsset
+#
+POST https://cloudinfra-gw.portal.checkpoint.com/app/i2/graphql/V1
+authorization: Bearer {{authToken}}
+content-type: application/json
+
+{"query":"\nmutation DeleteAsset($assetId: String\u0021) {\n    deleteAsset(id: $assetId)\n}\n \n","variables":{"assetId":"0ec3de75-772a-ec13-ab5f-1293efab529e"},"operationName":"DeleteAsset"}
+
+###
+#
+# 3a. GraphQL asset delete query simplified
+#   there are 3 sections delimited by empty line:
+#   1. request headers
+#   2. GraphaQL query
+#   3. query variables
+
+POST https://cloudinfra-gw.portal.checkpoint.com/app/i2/graphql/V1
+authorization: Bearer {{authToken}}
+content-type: application/json
+X-REQUEST-TYPE: GraphQL
+
+mutation DeleteAsset($assetId: String!) {
+    deleteAsset(id: $assetId)
+}
+
+{"assetId": "0ec3de75-772a-ec13-ab5f-1293efab529e"}
+
+###
