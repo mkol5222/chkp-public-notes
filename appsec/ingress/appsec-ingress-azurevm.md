@@ -115,7 +115,7 @@ helm install appsec open-appsec-k8s-nginx-ingress-latest.tgz \
 --set appsec.image.registry="" \
 --set appsec.image.repository=checkpoint \
 --set appsec.image.image=infinity-next-nano-agent \
---set appsec.image.tag=816760 \
+--set appsec.image.tag=831851 \
 --set controller.hostNetwork=true \
 --set controller.ingressClass=public \
 --set controller.ingressClassResource.name=public \
