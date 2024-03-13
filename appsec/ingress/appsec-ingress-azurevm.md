@@ -214,3 +214,49 @@ Result:
 * some incidents to try:
     * https://ip-iol-cz.klaud.online/?q=/etc/passwd
     * https://ip-iol-cz.klaud.online/?q=UNION+1=1
+
+
+
+## Bonus: One more application
+
+Notice: backend is approached via HTTPS and Host header to backend server set to match the service
+
+```shell
+cat << EOF | kubectl apply -f -
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpbin
+spec:
+  type: ExternalName
+  externalName: httpbin.org
+EOF
+
+microk8s kubectl apply -f - <<EOF
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+name: httpbin
+annotations:
+   cert-manager.io/cluster-issuer: lets-encrypt
+   nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+   nginx.ingress.kubernetes.io/upstream-vhost: "httpbin.org"
+spec:
+  ingressClassName: public  
+  tls:
+  - hosts:
+    - httpbin.klaud.online
+    secretName: httpbin-ingress-tls  
+  rules:
+  - host: httpbin.klaud.online
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: httpbin
+            port:
+              number: 443
+EOF
+```
