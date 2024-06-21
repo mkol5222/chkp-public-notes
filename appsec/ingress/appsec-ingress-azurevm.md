@@ -111,7 +111,7 @@ wget https://downloads.openappsec.io/packages/helm-charts/nginx-ingress/open-app
 
 # remember to set CPTOKEN above!
 helm install appsec open-appsec-k8s-nginx-ingress-latest.tgz \
---set controller.appsec.mode=managed --set appsec.agentToken=$CPTOKEN \
+--set appsec.mode=managed --set appsec.agentToken=$CPTOKEN \
 --set appsec.image.registry="" \
 --set appsec.image.repository=checkpoint \
 --set appsec.image.image=infinity-next-nano-agent \
