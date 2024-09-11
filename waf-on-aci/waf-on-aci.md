@@ -178,5 +178,5 @@ curl -m5 -k -vvv "https://$DNSLABEL.$LOCATION.azurecontainer.io/?q=cat+/etc/pass
 # remove waf container
 az container delete --resource-group $RG --name waf
 # complete cleanup
-az group delete --name $RG --yes --no-wait
+az group delete --name $RG 
 ```
