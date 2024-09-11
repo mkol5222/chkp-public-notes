@@ -164,6 +164,8 @@ while true; do curl -m5 -vvv "http://$DNSLABEL.$LOCATION.azurecontainer.io/api/h
 
 # incident
 curl -m5 -vvv "http://$DNSLABEL.$LOCATION.azurecontainer.io/?q=cat+/etc/passwd" 2>&1 | head -30; 
+#ok
+curl -m5 -vvv "http://$DNSLABEL.$LOCATION.azurecontainer.io/ip/"; echo;
 
 # HTTPS
 curl -m5 -k -vvv "https://$DNSLABEL.$LOCATION.azurecontainer.io/?q=cat+/etc/passwd" 2>&1 | head -30;
