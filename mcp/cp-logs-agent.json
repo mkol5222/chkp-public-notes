@@ -1,0 +1,114 @@
+{
+  "name": "cp-logs-agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f05c369d-f921-43fd-b4c3-61e89ce8edaf",
+      "name": "When chat message received",
+      "webhookId": "99e85b9f-7bc1-4d16-9b17-889d07885b37"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "d953c6c4-0ed9-49ef-ac32-78f487791b95",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "http://localhost:18601/mcp",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.2,
+      "position": [
+        448,
+        192
+      ],
+      "id": "c54688e5-1395-4c96-a8f9-7fbe2d641f26",
+      "name": "MCP Client"
+    },
+    {
+      "parameters": {
+        "model": "qwen/qwen3.5-122b-a10b",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        80,
+        208
+      ],
+      "id": "160332a7-8236-4079-962d-913b79cc2376",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "eLeM6umnd2QXKGAU",
+          "name": "OpenRouter account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "cb5ee3ff-25d1-427f-a917-3f6d72f7f96b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "8fe291b81f0a34bbc8d09b79d3d2551008d8a08191b42aad0524f96590fd9342"
+  },
+  "id": "7dF3LIKbFFKBBsd3",
+  "tags": []
+}
