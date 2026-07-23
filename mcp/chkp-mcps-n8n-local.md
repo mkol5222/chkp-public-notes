@@ -32,6 +32,8 @@ bash -c 'MANAGEMENT_HOST=cpman.duckdns.org USERNAME=admin PASSWORD=demo123 npx @
 cd $(mktemp -d)
 # start on http://localhost:5678 - more on https://npmx.dev/package/n8n
 npx -y n8n
+
+# data will presist in ~/.n8n folder, you can remove it to start fresh
 ```
 
 ## Basic N8N Check Point Logs AI Agent
