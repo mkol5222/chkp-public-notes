@@ -37,4 +37,6 @@ npx -y n8n
 ## Basic N8N Check Point Logs AI Agent
 
 Consider importing workflow as a starter:
+https://raw.githubusercontent.com/mkol5222/chkp-public-notes/refs/heads/master/mcp/cp-logs-agent.json
 
+![alt text](cp-logs-agent-n8n.png)

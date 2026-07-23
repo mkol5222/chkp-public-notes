@@ -22,7 +22,7 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 3.1,
       "position": [
-        208,
+        288,
         0
       ],
       "id": "d953c6c4-0ed9-49ef-ac32-78f487791b95",
@@ -36,8 +36,8 @@
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.2,
       "position": [
-        448,
-        192
+        480,
+        224
       ],
       "id": "c54688e5-1395-4c96-a8f9-7fbe2d641f26",
       "name": "MCP Client"
@@ -50,8 +50,8 @@
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
       "typeVersion": 1,
       "position": [
-        80,
-        208
+        224,
+        224
       ],
       "id": "160332a7-8236-4079-962d-913b79cc2376",
       "name": "OpenRouter Chat Model",
@@ -61,6 +61,17 @@
           "name": "OpenRouter account"
         }
       }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        352,
+        224
+      ],
+      "id": "bb6b6326-58f7-487a-9078-ea3ffec336d0",
+      "name": "Simple Memory"
     }
   ],
   "pinData": {},
@@ -97,6 +108,17 @@
           }
         ]
       ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
@@ -104,7 +126,7 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "cb5ee3ff-25d1-427f-a917-3f6d72f7f96b",
+  "versionId": "80ed25ad-6d21-4573-84db-9816f0d6e19b",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "8fe291b81f0a34bbc8d09b79d3d2551008d8a08191b42aad0524f96590fd9342"
