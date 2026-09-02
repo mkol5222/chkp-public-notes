@@ -142,7 +142,7 @@ The exact schemes are more complicated than the labels suggest, but the first in
 
 > **Quantization trades some numerical precision for much lower memory requirements.**
 
-This is one of the major reasons modern open-weight models can run on consumer hardware. llama.cpp supports multiple quantization levels, including 1.5-, 2-, 3-, 4-, 5-, 6-, and 8-bit integer quantization. citeturn0search3
+This is one of the major reasons modern open-weight models can run on consumer hardware. llama.cpp supports multiple quantization levels, including 1.5-, 2-, 3-, 4-, 5-, 6-, and 8-bit integer quantization.
 
 ---
 
@@ -150,7 +150,7 @@ This is one of the major reasons modern open-weight models can run on consumer h
 
 **llama.cpp is an inference engine/runtime for running LLMs locally.**
 
-It is written in C/C++ and is designed to run models efficiently across a wide range of hardware. Its official project describes goals including minimal setup, broad hardware support, quantization, and CPU/GPU acceleration. citeturn0search3
+It is written in C/C++ and is designed to run models efficiently across a wide range of hardware. Its official project describes goals including minimal setup, broad hardware support, quantization, and CPU/GPU acceleration.
 
 A simplified picture is:
 
@@ -165,7 +165,7 @@ A simplified picture is:
              CPU               GPU
 ```
 
-It can make use of CPU instruction sets, Apple Silicon/Metal, NVIDIA CUDA, AMD HIP, Vulkan, SYCL, and other backends. citeturn0search3
+It can make use of CPU instruction sets, Apple Silicon/Metal, NVIDIA CUDA, AMD HIP, Vulkan, SYCL, and other backends.
 
 This is why llama.cpp is such an important project in local AI: it sits close to the actual inference machinery.
 
@@ -179,7 +179,7 @@ This is the easiest distinction:
 
 > **llama.cpp is an inference engine; Ollama is a much more user-friendly way to manage and run local models.**
 
-Ollama provides a simple workflow for downloading, running, and integrating models, including a local API. Its documentation describes it as a way to get up and running with models such as Gemma, DeepSeek-R1, Qwen, and others. citeturn0search0
+Ollama provides a simple workflow for downloading, running, and integrating models, including a local API. Its documentation describes it as a way to get up and running with models such as Gemma, DeepSeek-R1, Qwen, and others.
 
 The conceptual stack is:
 
@@ -214,7 +214,7 @@ Think:
 
 > “I want to understand and control more of the machinery that actually executes the model.”
 
-One correction worth making to the simplified story often told online: **don't treat Ollama and llama.cpp as competing concepts.** They operate at different layers, and the relationship between specific Ollama releases and inference backends can evolve. Ollama's current documentation is the best source for its supported runtime behavior. citeturn0search0
+One correction worth making to the simplified story often told online: **don't treat Ollama and llama.cpp as competing concepts.** They operate at different layers, and the relationship between specific Ollama releases and inference backends can evolve. Ollama's current documentation is the best source for its supported runtime behavior.
 
 ---
 
@@ -317,7 +317,7 @@ A runtime can sometimes split the workload:
 
 This is commonly described as **CPU/GPU offloading**, **GPU offloading**, or hybrid inference, depending on the runtime and configuration.
 
-llama.cpp explicitly supports CPU+GPU hybrid inference, allowing models larger than available VRAM to be partially accelerated by the GPU. citeturn0search3
+llama.cpp explicitly supports CPU+GPU hybrid inference, allowing models larger than available VRAM to be partially accelerated by the GPU.
 
 But there is a catch:
 
@@ -965,7 +965,7 @@ VRAM usage
 tokens/sec
 ```
 
-The official Ollama documentation is a good starting point for installation, model management, APIs, and supported workflows. citeturn0search0
+The official Ollama documentation is a good starting point for installation, model management, APIs, and supported workflows.
 
 ## Level 2 — Hardware
 
@@ -996,7 +996,7 @@ quantization
 CPU/GPU split
 ```
 
-The llama.cpp project is particularly useful here because its documentation and command-line tooling expose many of these concepts directly. citeturn0search3
+The llama.cpp project is particularly useful here because its documentation and command-line tooling expose many of these concepts directly.
 
 ## Level 4 — Transformer internals
 
@@ -1107,8 +1107,9 @@ That exercise turns the abstract concepts into something you can actually use wh
 
 ## Sources and further reading
 
-- [Ollama documentation](https://docs.ollama.com/) — official documentation and getting-started material. citeturn0search0
-- [llama.cpp repository](https://github.com/ggml-org/llama.cpp) — official source, documentation, hardware backends, quantization, and examples. citeturn0search3
+- [Ollama documentation](https://docs.ollama.com/) — official documentation for running models locally, APIs, integrations, and hardware support.
+- [llama.cpp repository](https://github.com/ggml-org/llama.cpp) — official source repository, documentation, hardware backends, quantization, and examples.
+
 
 ---
 
